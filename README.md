@@ -1,11 +1,13 @@
 
 
-NOTE for snake game:
+# NOTE for snake game:
 
-+ you should notice snake speed 
++
++ you should notice snake speed
 + the animation is just side task
-+ make the snake using linked list
++ Make the snake using linked list
 + pygame surface
-+ after draw something use pygame.display.update
-+ blitting   
++ Check boundary or not 
++ 
++ After draw something then use pygame.display.update to refesh the frame
 # SnakeGame
