@@ -1,0 +1,31 @@
+#What is linked list 
+
+	is a linear data structure, in which the element are not stored at contiguos memory
+location, each linked list consist of Node where each Node contain a data field and
+a link point to another Node in the list
+
+
+Linked-list vs Array:
+	Linked-list: (Singly)
+	Pros:
+		+ Dynamic Size
+		+ Ease of Insertion/Deletion
+	Cons:
+		- Search take more time 
+		-	Need to store pointer memory 
+		- Random Access is not allowed 
+	Array:
+	Pros:
+		+ Index is pretty much the best thing you can imagine 
+		+	Accessing an element in Array is super fast  
+	Cons:
+		- 
+		- 
+
+
+
+In Array memory is assgined during compile time
+while In linked-list it is allocated during execution of runtime
+
+
+
