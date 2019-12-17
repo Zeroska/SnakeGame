@@ -29,7 +29,15 @@ class SnakeLinkedList:
     
     #def count_the_cell(self): 
     #    while self.head_cell != None:        
-                        
+                            
+    def count_cell(self, list):
+        count = 0
+        temp = self.head_cell
+        while temp is not None:
+            count += 1
+            temp = temp.next_cell
+        return count 
+
 
     def at_beginning(self, new_cell):
         NewCell = Cell(new_cell)
@@ -165,12 +173,16 @@ def gameLoop():
 
         #snake_Head = [] This should replace using linked_listSnake 
         #X_cord , Y_cord for the snake 
-        #This is initial the Snake(x,y) 
-        #
+        #Create first snake cell and add it to the end of snake list 
         snake_cell = Cell(x1 , y1)
 
         snake_List.at_end(snake_cell.Xcord, snake_cell.Ycord)
+        
+
+
+        #print out for track the head of the snake(Xcord, Ycord)
         snake_List.list_print()
+        
         #snake_Head.append(x1) 
         #snake_Head.append(y1)
 
@@ -179,24 +191,30 @@ def gameLoop():
 
 
         #if snake_list is bigger the len of snake 
-        if len(snake_List) > Length_of_snake:
-            del snake_List[0]
+        #if count_the_cell(snake_List) > Length_of_snake:
+        #   del 
          
-        #for x in snake_List[:-1]:
-        #    if x == snake_Head:
-        #        game_close = True
+        for x in snake_List[:-1]:
+            if x == snake_Head:
+                game_close = True
 
         #our snake first block
         our_snake(snake_block, snake_List)
  
         #render all the thing we draw include our stupid snake 
         pygame.display.update()
- 
+        
+
+        #If the snake hit the food it add one more cell the snake  
         if x1 == foodx and y1 == foody:
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
             foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
+            #keep trak of the snake lenght
             Length_of_snake += 1
- 
+
+
+
+        #Frame per second 
         clock.tick(snake_speed)
  
     pygame.quit()
