@@ -90,7 +90,7 @@ pygame.display.set_caption('Python')
 clock = pygame.time.Clock()
  
 snake_block = 10
-snake_speed = 20
+snake_speed = 15
 
  
 font_style = pygame.font.SysFont("None", 25)
@@ -102,7 +102,7 @@ score_font = pygame.font.SysFont("None", 35)
 def our_snake(snake_block, snake_list): 
     temp = snake_list.head_cell   
     while temp is not None:
-        pygame.draw.rect(dis, green, [temp.Xcord, temp.Ycord, snake_block, snake_block])
+        pygame.draw.rect(dis, green, [temp.Xcord, temp.Ycord, snake_block, snake_block],2)
         temp = temp.next_cell
     return 
  
@@ -159,7 +159,7 @@ def gameLoop():
                         game_close = False
                     if event.key == pygame.K_c:
                         gameLoop()
-
+        
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
