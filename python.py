@@ -30,14 +30,14 @@ class SnakeLinkedList:
     #def count_the_cell(self): 
     #    while self.head_cell != None:        
                             
-    def count_cell(self, list):
+    def count_cell(self):
         count = 0
         temp = self.head_cell
         while temp is not None:
             count += 1
             temp = temp.next_cell
         return count 
-
+    
 
     def at_beginning(self, new_cell):
         NewCell = Cell(new_cell)
@@ -53,6 +53,25 @@ class SnakeLinkedList:
             last_cell = last_cell.next_cell
         last_cell.next_cell= NewCell 
 
+    #Delete the last Cell
+    def del_at_end(self):
+        #need a temp to hold value
+        temp = self.head_cell
+        while temp is not None:
+            temp2 = temp 
+            temp = temp.next_cell
+        del temp2.next_cell
+        temp2.next_cell = None
+             
+    def del_at_beginning(self):
+        if self.head_cell is None:
+            return
+        else:
+            temp = self.head_cell 
+            self.head_cell = self.head_cell.next_cell
+            del temp  
+
+#---------------------------------Game_Initial--------------------------------
 pygame.init()
  
 white = (255, 255, 255)
@@ -81,12 +100,11 @@ score_font = pygame.font.SysFont("None", 35)
 
 #our snake consist of block(x,y) of the linked_list I have make
 def our_snake(snake_block, snake_list): 
-    temp = snake_list.head_cell
-    
+    temp = snake_list.head_cell   
     while temp is not None:
         pygame.draw.rect(dis, green, [temp.Xcord, temp.Ycord, snake_block, snake_block])
         temp = temp.next_cell
-    
+    return 
  
  
 def message(msg, color):
@@ -94,17 +112,9 @@ def message(msg, color):
     dis.blit(mesg, [dis_width / 6, dis_height / 3])
 
 
-#Read every Cell in SnakeLinkedList and took it cord to create a snake 
-#
-def createSnakeList(snake_block, snake):
-    temp = snake.head_cell 
-    while(temp.next_cell != None):  
-        pygame.draw.rect(dis, green,[snake.cord[0],snake.cord[1],snake_block,snake_block])
-         
-
-def checkSnakeHead(snake):
-    #If the snake hit himself 
-    if snake.head_cell is 
+#def checkSnakeHead(snake):
+#    #If the snake hit himself 
+#    if snake.head_cell is 
 
 
 
@@ -128,14 +138,13 @@ def gameLoop():
     #snake_cell = Cell(x1 , y1)
      
     snake_List = SnakeLinkedList() #it used to be snake_List = []  
-    Length_of_snake = 1
+    Length_of_snake = 1 #track snake length 
  
     foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
     foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
  
     while not game_over:
-        #while game is over choose whether play again or quit 
-        # 
+        #while game is over choose whether play again or quit  
         while game_close == True:
             dis.fill(black)
             message("You Lost! Press C-Play Again or Q-Quit", red) 
@@ -150,7 +159,8 @@ def gameLoop():
                         game_close = False
                     if event.key == pygame.K_c:
                         gameLoop()
-        #for event 
+
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
@@ -174,22 +184,24 @@ def gameLoop():
         x1 += x1_change
         y1 += y1_change
         dis.fill(black)
+
         #draw the food 
         pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
-        #create a snakehead with plain 
 
+
+        #create a snakehead with plain 
         #snake_Head = [] This should replace using linked_listSnake 
         #X_cord , Y_cord for the snake 
         #Create first snake cell and add it to the end of snake list 
-        snake_cell = Cell(x1 , y1)
 
+        snake_cell = Cell(x1 , y1)
         snake_List.at_end(snake_cell.Xcord, snake_cell.Ycord)
         
 
 
         #print out for track the head of the snake(Xcord, Ycord)
         snake_List.list_print()
-        
+        print(snake_List.count_cell()) 
         #snake_Head.append(x1) 
         #snake_Head.append(y1)
 
@@ -199,13 +211,14 @@ def gameLoop():
 
         #if snake_list is bigger the len of snake 
         #Then ... 
-        if count_the_cell(snake_List) > Length_of_snake:
-           del snake_List.last_cell  
+        if snake_List.count_cell() > Length_of_snake:
+            #snake_List.del_at_end() 
+            snake_List.del_at_beginning()
         
 
 
-        #If the snake hit himself then the game is over   
-        
+        #If the snake hit himself then the game is over 
+                 
         #our snake first block
         our_snake(snake_block, snake_List)
  
@@ -218,6 +231,7 @@ def gameLoop():
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
             foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
             #keep trak of the snake lenght
+            snake_List.at_end(snake_cell.Xcord, snake_cell.Ycord)
             Length_of_snake += 1
 
 
