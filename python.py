@@ -102,6 +102,13 @@ def createSnakeList(snake_block, snake):
         pygame.draw.rect(dis, green,[snake.cord[0],snake.cord[1],snake_block,snake_block])
          
 
+def checkSnakeHead(snake):
+    #If the snake hit himself 
+    if snake.head_cell is 
+
+
+
+
 #initial value for the snake 
 #list = [[200,190],[200,180],[200,170]]
 #
@@ -191,13 +198,14 @@ def gameLoop():
 
 
         #if snake_list is bigger the len of snake 
-        #if count_the_cell(snake_List) > Length_of_snake:
-        #   del 
-         
-        for x in snake_List[:-1]:
-            if x == snake_Head:
-                game_close = True
+        #Then ... 
+        if count_the_cell(snake_List) > Length_of_snake:
+           del snake_List.last_cell  
+        
 
+
+        #If the snake hit himself then the game is over   
+        
         #our snake first block
         our_snake(snake_block, snake_List)
  
